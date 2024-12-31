@@ -107,7 +107,7 @@ const Intro = () => {
                 className="flex w-[11rem] items-center space-x-2 whitespace-nowrap rounded-full bg-white/10 p-2 backdrop-blur-md"
               >
                 <feature.icon className="size-5 text-primary" />
-                <span className="text-sm font-medium text-white">
+                <span className="text-sm text-white">
                   {feature.text}
                 </span>
               </div>
