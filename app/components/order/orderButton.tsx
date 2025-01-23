@@ -1,3 +1,5 @@
+"use client";
+
 import { MenuItem } from "@/app/utils/lib";
 import React from "react";
 import { useNavigate } from "react-router-dom";

@@ -1,16 +1,12 @@
+'use client'
+
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MenuItem, todaysSpecials } from "../utils/lib";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { MinusCircle, PlusCircle } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-
-interface OrderItemProps {
-  item: MenuItem;
-  quantity: number;
-  instructions: string;
-}
+import { OrderItemProps } from "../utils/types";
+import { OrderItemCard } from "../components/order/orderItemCard";
 
 const OrderPage = () => {
   const location = useLocation();
@@ -150,7 +146,7 @@ const OrderPage = () => {
                         <h3 className="font-semibold text-gray-800 group-hover:text-primary">
                           {item.name}
                         </h3>
-                        <span className="rounded-md bg-secondary text-sm px-0.5 font-medium">
+                        <span className="rounded-md bg-secondary px-0.5 text-sm font-medium">
                           KES {item.price.toFixed(2)}
                         </span>
                       </div>
@@ -187,85 +183,3 @@ const OrderPage = () => {
 };
 
 export default OrderPage;
-
-interface OrderItemCardProps {
-  orderItem: OrderItemProps;
-  index: number;
-  onQuantityChange: (index: number, value: number) => void;
-  onRemoveItem: (index: number) => void;
-  showRemoveButton: boolean;
-}
-const OrderItemCard: React.FC<OrderItemCardProps> = ({
-  orderItem,
-  index,
-  onQuantityChange,
-  onRemoveItem,
-  showRemoveButton,
-}) => {
-  return (
-    <Card>
-      <CardHeader className="p-2">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{orderItem.item.name}</h2>
-          {showRemoveButton && (
-            <button
-              onClick={() => onRemoveItem(index)}
-              className="rounded-md bg-red-500 px-2 py-1 text-sm text-white"
-            >
-              Remove
-            </button>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-1">
-        <p className="text-sm text-gray-700">{orderItem.item.description}</p>
-        <p className="font-semibold">Price: KES {orderItem.item.price}</p>
-
-        <QuantityControl
-          quantity={orderItem.quantity}
-          onDecrease={() => onQuantityChange(index, orderItem.quantity - 1)}
-          onIncrease={() => onQuantityChange(index, orderItem.quantity + 1)}
-        />
-      </CardContent>
-    </Card>
-  );
-};
-
-interface QuantityControlProps {
-  quantity: number;
-  onDecrease: () => void;
-  onIncrease: () => void;
-}
-const QuantityControl: React.FC<QuantityControlProps> = ({
-  quantity,
-  onDecrease,
-  onIncrease,
-}) => {
-  return (
-    <div className="flex items-center space-x-4">
-      <label className="text-sm font-medium">Quantity:</label>
-      <div className="flex items-center space-x-3">
-        <button
-          onClick={onDecrease}
-          disabled={quantity <= 1}
-          aria-label="Decrease quantity"
-          className="text-blue-600 hover:text-blue-800"
-        >
-          <MinusCircle
-            className={quantity <= 1 ? "text-gray-400" : "text-red-600"}
-          />
-        </button>
-        <span className="min-w-[1.5rem] text-center text-lg font-semibold">
-          {quantity}
-        </span>
-        <button
-          onClick={onIncrease}
-          aria-label="Increase quantity"
-          className="text-green-600"
-        >
-          <PlusCircle />
-        </button>
-      </div>
-    </div>
-  );
-};
