@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${grotesque.variable} antialiased`}>{children}</body>
+      <body className={`${grotesque.className} antialiased`}>{children}</body>
     </html>
   );
 }

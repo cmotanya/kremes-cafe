@@ -3,15 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --primary: #b6ba5d;
-  --secondary: #78cdef;
-  --accent: #4ffd49;
-  --text: #1d0f00;
-  --background: #fff9f1;
+  --primary: #d03052;
+  --secondary: #e7b893;
+  --accent: #dec16d;
+  --text: #0c0305;
 }
 
 html {
   font-size: 16px;
   color: var(--text);
   background: var(--background);
+}
+
+@layer base {
+  * {
+    @apply m-0 box-border p-0;
+  }
 }
