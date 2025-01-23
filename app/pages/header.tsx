@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import DesktopNavigation from "./header/desktop-nav";
-import MobileNavigation from "./header/mobile-nav";
-import { cn } from "./utils/cn";
+import { cn } from "../utils/cn";
 import { Outfit } from "next/font/google";
+import DesktopNavigation from "../components/header/desktop-nav";
+import MobileNavigation from "../components/header/mobile-nav";
 
 const outfit = Outfit({
   variable: "--font-playfair",

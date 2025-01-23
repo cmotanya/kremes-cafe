@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import HamburgerMenu from "./hamburger";
-import { navigationItems } from "../utils/lib";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarClock, Clock, MapPin, Phone } from "lucide-react";
-import { cn } from "../utils/cn";
+import { cn } from "@/lib/utils";
+import { navigationItems } from "@/app/utils/lib";
 
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);

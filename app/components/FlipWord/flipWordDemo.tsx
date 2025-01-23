@@ -1,5 +1,5 @@
 import React from "react";
-import { FlipWords } from "./flip-words";
+import { FlipWords } from "./flipWords";
 
 export function FlipWordsDemo(words: string[]) {
   return (

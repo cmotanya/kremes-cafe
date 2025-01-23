@@ -12,9 +12,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "../utils/cn";
 import TrustedCustomers from "../components/trustedCustomers";
 import { ChefHat, Clock, Phone, User, UtensilsCrossed } from "lucide-react";
-import FlipText from "../components/flip-text";
+import FlipText from "../components/flipText";
 import FeatureCard from "../components/featureCard";
-import OrderButton from "../components/orderButton";
+import OrderButton from "../components/order/orderButton";
 
 const HomePage = () => {
   const [currentSpecial, setCurrentSpecial] = useState(0);
@@ -176,7 +176,7 @@ const HomePage = () => {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 w-full items-center justify-center overflow-hidden bg-background p-5"
+            className="bg-background mt-4 w-full items-center justify-center overflow-hidden p-5"
           >
             <h2 className="mb-4 text-2xl font-bold text-gray-800">
               Today&apos;s Special

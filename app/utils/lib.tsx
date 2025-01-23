@@ -7,7 +7,7 @@ import {
   Users,
   UtensilsCrossed,
 } from "lucide-react";
-import { FlipWords } from "../components/FlipWord/flip-words";
+import { FlipWords } from "../components/FlipWord/flipWords";
 import {
   Outfit,
   Playfair_Display as Playfair,

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
 import Image from "next/image";
-import { outfit, storyImages } from "./utils/lib";
-import { cn } from "./utils/cn";
+import { outfit, storyImages } from "../utils/lib";
+import { cn } from "../utils/cn";
 
 const About = () => {
   return (

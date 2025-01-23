@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { cn } from "../utils/cn";
-import { navigationItems } from "../utils/lib";
+import { navigationItems } from "@/app/utils/lib";
+import { cn } from "@/lib/utils";
 
 const DesktopNavigation = () => {
   const [scrolled, setScrolled] = useState(false);
