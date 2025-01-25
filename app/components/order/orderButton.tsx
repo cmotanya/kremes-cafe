@@ -1,6 +1,6 @@
 "use client";
 
-import { MenuItem } from "@/app/utils/lib";
+import { MenuItem } from "@/app/utils/types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

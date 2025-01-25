@@ -1,5 +1,3 @@
-import { MenuItem } from "./lib";
-
 export interface OrderItemProps {
   item: MenuItem;
   quantity: number;
@@ -19,3 +17,14 @@ export interface QuantityControlProps {
   onDecrease: () => void;
   onIncrease: () => void;
 }
+
+export type MenuItem = {
+  id: string;
+  name: string;
+  prep: string;
+  difficulty: string;
+  orders: number;
+  image: string;
+  description: string;
+  price: number;
+};

@@ -14,6 +14,7 @@ import {
   Cormorant as CormorantFont,
   Bricolage_Grotesque as Grotesque,
 } from "next/font/google";
+import { MenuItem } from "./types";
 
 export const grotesque = Grotesque({
   variable: "--font-geist-sans",
@@ -71,17 +72,6 @@ export const customers = [
   "/images/customer4.jpg",
   "/images/customer5.jpg",
 ];
-
-export type MenuItem = {
-  id: string;
-  name: string;
-  prep: string;
-  difficulty: string;
-  orders: number;
-  image: string;
-  description: string;
-  price: number;
-};
 
 export const todaysSpecials: MenuItem[] = [
   {

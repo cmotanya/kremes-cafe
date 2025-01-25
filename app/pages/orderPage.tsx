@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { MenuItem, todaysSpecials } from "../utils/lib";
+import { todaysSpecials } from "../utils/lib";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { OrderItemProps } from "../utils/types";
+import { MenuItem, OrderItemProps } from "../utils/types";
 import { OrderItemCard } from "../components/order/orderItemCard";
 
 const OrderPage = () => {
