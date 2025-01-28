@@ -1,11 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cn } from "../utils/cn";
 import { Outfit } from "next/font/google";
-import DesktopNavigation from "../components/header/desktop-nav";
-import MobileNavigation from "../components/header/mobile-nav";
+import DesktopNavigation from "./components/navigation/desktop-nav";
+import MobileNavigation from "./components/navigation/mobile-nav";
+import { cn } from "./utils/cn";
 
 const outfit = Outfit({
   variable: "--font-playfair",
@@ -32,8 +34,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 flex items-center justify-between p-4 transition-all duration-300",
-        scrolled && "bg-white/10 shadow-md backdrop-blur-md",
+        "relative flex items-center bg-gray-200 justify-between p-4 transition-all duration-300",
         outfit.className,
       )}
     >

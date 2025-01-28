@@ -9,7 +9,6 @@ import { navigationItems } from "@/app/utils/lib";
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
 
   const navVariants = {
     open: { opacity: 1, x: 0, transition: { duration: 0.3 }, ease: "easeOut" },
@@ -31,20 +30,6 @@ const MobileNavigation = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrolled]);
-
-  useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         setIsOpen(false);
@@ -62,10 +47,7 @@ const MobileNavigation = () => {
   }, [isOpen]);
 
   return (
-    <nav
-      aria-label="Mobile Navigation Menu"
-      className="fixed right-5 top-3 z-50 flex md:hidden"
-    >
+    <nav aria-label="Mobile Navigation Menu" className="flex md:hidden">
       <HamburgerMenu
         isOpen={isOpen}
         aria-hidden={isOpen}
@@ -82,33 +64,31 @@ const MobileNavigation = () => {
             aria-hidden={!isOpen}
             className={cn(
               "fixed inset-0 z-40 flex h-dvh flex-col items-center justify-between pt-[8rem] backdrop-blur-md",
-              scrolled && "bg-slate-900/90",
             )}
           >
             {/* Navigation Items */}
-            <motion.ul className="flex h-full w-full flex-col items-center gap-6">
+            <motion.ul className="flex h-full flex-col items-center gap-6">
               {navigationItems.map((item, index) => (
                 <motion.li
                   role="menuitem"
                   custom={index}
                   variants={itemVariants}
-                  key={item}
+                  key={item.href}
+                  className="flex items-center justify-center"
                 >
                   <Link
-                    href={`#${item.toLowerCase()}`}
+                    href={`#${item.href.toLowerCase()}`}
                     onClick={() => {
                       setIsOpen(false);
-                      setActiveLink(item);
+                      setActiveLink(item.name);
                     }}
                     className={cn(
                       "rounded-lg p-2 text-lg font-medium uppercase text-slate-900/90 hover:scale-105 focus:text-primary focus:ring-2 focus:ring-primary",
-                      activeLink === item &&
+                      activeLink === item.name &&
                         "rounded-lg bg-secondary px-3 py-2 text-primary",
-                      scrolled && "text-white/90",
-                      scrolled && activeLink === item && "bg-accent text-white",
                     )}
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </motion.li>
               ))}

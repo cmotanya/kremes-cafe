@@ -34,7 +34,12 @@ export const cormorant = CormorantFont({
   subsets: ["latin"],
 });
 
-export const navigationItems = ["home", "about", "menu", "contact"];
+export const navigationItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Menu", href: "/menu" },
+  { name: "Contact", href: "/contact" },
+];
 
 export const images = ["/images/1.jpg", "/images/2.jpg"];
 

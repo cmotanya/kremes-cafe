@@ -27,14 +27,14 @@ const DesktopNavigation = () => {
         <div className="flex space-x-4 text-xl">
           {navigationItems.map((item) => (
             <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.href}
+              href={`#${item.name.toLowerCase()}`}
               className={cn(
                 "group relative px-3 py-2 font-medium uppercase hover:text-primary",
                 scrolled && "text-gray-800",
               )}
             >
-              {item}
+              {item.name}
               <span className="absolute inset-x-0 bottom-0 h-0.5 scale-x-0 bg-primary transition-transform group-hover:scale-x-100" />
             </Link>
           ))}

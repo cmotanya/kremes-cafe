@@ -1,6 +1,7 @@
 import { OrderItemCardProps } from "@/app/utils/types";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { QuantityControl } from "./qualityControl";
+import { cn } from "@/app/utils/cn";
 
 export const OrderItemCard: React.FC<OrderItemCardProps> = ({
   orderItem,
@@ -10,7 +11,9 @@ export const OrderItemCard: React.FC<OrderItemCardProps> = ({
   showRemoveButton,
 }) => {
   return (
-    <Card>
+    <Card
+      className={cn(orderItem.quantity > 1 ? "bg-green-100" : "bg-red-100")}
+    >
       <CardHeader className="p-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">{orderItem.item.name}</h2>
@@ -18,13 +21,14 @@ export const OrderItemCard: React.FC<OrderItemCardProps> = ({
             <button
               onClick={() => onRemoveItem(index)}
               className="rounded-md bg-red-500 px-2 py-1 text-sm text-white"
+              aria-label={`Remove ${orderItem.item.name} from order`}
             >
               Remove
             </button>
           )}
         </div>
       </CardHeader>
-      <CardContent className="space-y-1">
+      <CardContent>
         <p className="text-sm text-gray-700">{orderItem.item.description}</p>
         <p className="font-semibold">Price: KES {orderItem.item.price}</p>
 

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque as Grotesque } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
+import Footer from "./footer";
+// import Header from "./header";
 
 const grotesque = Grotesque({
   variable: "--font-geist-sans",
@@ -19,7 +22,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${grotesque.className} antialiased`}>{children}</body>
+      <body className={`${grotesque.className} antialiased`}>
+        {/* <Header /> */}
+        <main>
+          <Suspense
+            fallback={
+              <div className="flex min-h-screen items-center justify-center">
+                <div className="text-lg">Loading...</div>
+              </div>
+            }
+          >
+            {children}
+          </Suspense>
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }
