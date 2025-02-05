@@ -7,7 +7,7 @@ export const useOrderItems = () => {
   const router = useRouter();
 
   const [orderItems, setOrderItems] = useState<OrderItemProps[]>([]);
-  const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const availableItems = todaysSpecials.filter(
     (item) => !orderItems.some((orderItems) => orderItems.item.id === item.id),
@@ -18,12 +18,15 @@ export const useOrderItems = () => {
     setOrderItems(newItems);
   };
 
+  const clearOrderItems = () => {
+    setOrderItems([]);
+  };
   const handleCloseModal = (open: boolean) => {
-    setIsAddItemModalOpen(open); // Close the modal
+    setIsModalOpen(open); // Close the modal
   };
 
   const handleOpenModal = () => {
-    setIsAddItemModalOpen(true);
+    setIsModalOpen(true);
   };
 
   const addItem = (selectedItem: MenuItem) => {
@@ -32,7 +35,7 @@ export const useOrderItems = () => {
 
       { item: selectedItem, quantity: 1, instructions: "" },
     ]);
-    setIsAddItemModalOpen(false); // Close the modal after adding the item
+    setIsModalOpen(false); // Close the modal after adding the item
   };
 
   const ClearAllOrders = () => {
@@ -58,7 +61,7 @@ export const useOrderItems = () => {
   return {
     availableItems,
     orderItems,
-    isAddItemModalOpen,
+    isModalOpen,
     calculateTotal,
     handleQuantityChange,
     handleCloseModal,
@@ -68,5 +71,6 @@ export const useOrderItems = () => {
     removeItem,
     setOrderItems,
     handleBack,
+    clearOrderItems,
   };
 };

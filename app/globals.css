@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --primary: #d03052;
-  --secondary: #e7b893;
-  --accent: #dec16d;
-  --text: #0c0305;
+  --primary: #2d96e7;
+  --secondary: #b28fec;
+  --accent: #ec536f;
+  --text: #01060a;
+  --background: #eff8fd;
 }
 
 html {

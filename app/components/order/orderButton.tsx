@@ -11,8 +11,8 @@ interface OrderButtonProps {
 
 const OrderButton: React.FC<OrderButtonProps> = ({ item }) => {
   return (
-    <div className="flex justify-center items-center pt-5">
-      <Button asChild>
+    <div className="flex items-center justify-center pt-5">
+      <Button className="w-[90%] max-w-full rounded-full bg-primary py-6 uppercase text-white">
         <Link
           href={{ pathname: "/order", query: { item: JSON.stringify(item) } }}
           aria-label={`Order ${item.name} for KES ${item.price.toFixed(2)}`}

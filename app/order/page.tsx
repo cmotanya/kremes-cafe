@@ -1,26 +1,27 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
 import { MenuItem } from "../utils/types";
 import { OrderItemCard } from "../components/order/orderItemCard";
 import { useSearchParams } from "next/navigation";
 import { useOrderItems } from "../hooks/useOrderItems";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AddNewItemPage from "./addNewItemPage";
+import ConfirmButtonPage from "../components/order/confirmButtonPage";
 
 const OrderPage = () => {
   const searchParams = useSearchParams();
   const itemQuery = searchParams.get("item");
   const [initialItem, setInitialItem] = useState<MenuItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
   const {
     availableItems,
     orderItems,
     setOrderItems,
-    isAddItemModalOpen,
+    isModalOpen,
     calculateTotal,
     handleQuantityChange,
     handleCloseModal,
@@ -29,6 +30,7 @@ const OrderPage = () => {
     ClearAllOrders,
     removeItem,
     handleBack,
+    clearOrderItems,
   } = useOrderItems();
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const OrderPage = () => {
       {/* Back button */}
       <Button
         onClick={handleBack}
-        className="mb-8 flex items-center justify-center bg-accent"
+        className="mb-8 flex items-center justify-center bg-secondary"
       >
         <ArrowLeft className="size-4" />
         Back To Menu
@@ -98,12 +100,20 @@ const OrderPage = () => {
         />
       ))}
 
-      <button
+      <Button
         onClick={handleOpenModal}
-        className="mb-6 w-full rounded-lg border-2 border-dashed p-3 text-gray-500"
+        className="mb-6 w-full rounded-lg border-2 border-dashed border-gray-300 bg-transparent p-3 py-6 text-gray-500 shadow-none"
       >
         + Add Another Item
-      </button>
+      </Button>
+
+      {/* Modal for adding a new item */}
+      <AddNewItemPage
+        isAddItemModalOpen={isModalOpen}
+        handleCloseModal={() => handleCloseModal(false)}
+        availableItems={availableItems}
+        addItem={addItem}
+      />
 
       <div className="rounded-lg bg-gray-100 p-4">
         <div className="flex justify-between text-lg font-bold">
@@ -112,50 +122,25 @@ const OrderPage = () => {
         </div>
       </div>
 
-      <button className="mt-6 w-full rounded-full bg-primary p-3 text-white">
+      <Button
+        onClick={() => setIsOrderModalOpen(true)}
+        className="mt-6 w-full rounded-full bg-primary py-6 uppercase text-white"
+      >
         Place Order
-      </button>
+      </Button>
 
-      {/* Modal for adding a new item */}
-      <Dialog open={isAddItemModalOpen} onOpenChange={handleCloseModal}>
-        <DialogContent className="max-h-[70vh] w-[90%] max-w-md rounded-md bg-white/95">
-          <DialogTitle className="mb-2 font-bold">Add Another Item</DialogTitle>
-          <Badge className="ml-3 w-fit bg-gray-200">
-            {availableItems.length} Available.
-          </Badge>
-          <div className="space-y-2 overflow-y-auto">
-            {availableItems.length > 0 ? (
-              availableItems.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => {
-                    addItem(item);
-                  }}
-                  className="flex cursor-pointer items-center justify-between rounded-lg border bg-gray-100 p-2 transition-colors"
-                >
-                  <div className="flex-grow">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-semibold text-gray-800 group-hover:text-primary">
-                        {item.name}
-                      </h3>
-                      <span className="rounded-md bg-secondary px-0.5 text-sm font-medium">
-                        KES {item.price.toFixed(2)}
-                      </span>
-                    </div>
-                    <p className="line-clamp-2 text-sm text-gray-600">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-500">
-                No items available to add.
-              </p>
-            )}
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Modal for Confirmation */}
+      {isOrderModalOpen && (
+        <ConfirmButtonPage
+          orderItems={orderItems}
+          clearOrderItems={clearOrderItems}
+          totalPrice={calculateTotal()}
+          isOrderModalOpen={isOrderModalOpen}
+          setIsOrderModalOpen={setIsOrderModalOpen}
+          name={initialItem.name}
+          price={calculateTotal()}
+        />
+      )}
     </div>
   );
 };
