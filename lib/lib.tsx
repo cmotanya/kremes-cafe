@@ -7,14 +7,13 @@ import {
   Users,
   UtensilsCrossed,
 } from "lucide-react";
-import { FlipWords } from "../components/FlipWord/flipWords";
+import { FlipWords } from "../app/components/FlipWord/flipWords";
 import {
   Outfit,
   Playfair_Display as Playfair,
   Cormorant as CormorantFont,
   Bricolage_Grotesque as Grotesque,
 } from "next/font/google";
-import { MenuItem } from "./types";
 
 export const grotesque = Grotesque({
   variable: "--font-geist-sans",
@@ -76,39 +75,6 @@ export const customers = [
   "/images/customer3.jpg",
   "/images/customer4.jpg",
   "/images/customer5.jpg",
-];
-
-export const todaysSpecials: MenuItem[] = [
-  {
-    id: "1",
-    name: "Truffle Pasta",
-    prep: "15 min",
-    difficulty: "Medium",
-    orders: 45,
-    image: "/images/truffle-pasta.jpg",
-    description: "Hand-crafted pasta with fresh black truffle and parmesan",
-    price: 24,
-  },
-  {
-    id: "2",
-    name: "Matcha Cake",
-    prep: "30 min",
-    difficulty: "Hard",
-    orders: 28,
-    image: "/images/matcha-cake.jpg",
-    description: "Japanese-inspired layered matcha cream cake",
-    price: 18,
-  },
-  {
-    id: "3",
-    name: "Avocado Toast",
-    prep: "10 min",
-    difficulty: "Easy",
-    orders: 67,
-    image: "/images/avocado-toast.jpg",
-    description: "Sourdough toast with smashed avocado and poached eggs",
-    price: 16,
-  },
 ];
 
 export const features = [

@@ -1,20 +1,23 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock, ChefHat, User } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
-import { cn } from "../utils/cn";
-import { todaysSpecials } from "../utils/lib";
 import OrderButton from "./order/orderButton";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { todaysSpecials } from "@/lib/menuItem";
 
 const DishOfTheDay = () => {
   const [currentSpecial, setCurrentSpecial] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
+  const firstFourSpecial = todaysSpecials.slice(0, 3);
+  const todaysSpecial = firstFourSpecial[currentSpecial];
+
   const nextSlide = useCallback(() => {
     setCurrentSpecial((prev) =>
-      prev === todaysSpecials.length - 1 ? 0 : prev + 1,
+      prev === firstFourSpecial.length - 1 ? 0 : prev + 1,
     );
-  }, []);
+  }, [firstFourSpecial.length]);
 
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timeout | undefined;
@@ -69,8 +72,8 @@ const DishOfTheDay = () => {
         >
           <div className="aspect-video h-[12rem] w-full md:h-[20rem]">
             <Image
-              src={todaysSpecials[currentSpecial].image}
-              alt={todaysSpecials[currentSpecial].name}
+              src={todaysSpecial.image}
+              alt={todaysSpecial.name}
               width={500}
               height={500}
               priority
@@ -82,27 +85,27 @@ const DishOfTheDay = () => {
           </div>
           <div className="space-y-2 text-center">
             <h3 className="text-2xl font-semibold md:text-xl">
-              {todaysSpecials[currentSpecial].name}
+              {todaysSpecial.name}
             </h3>
-            <p>{todaysSpecials[currentSpecial].description}</p>
+            <p>{todaysSpecial.description}</p>
 
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 <Clock size={20} />
-                <span>{todaysSpecials[currentSpecial].prep}</span>
+                <span>{todaysSpecial.prep}</span>
               </div>
               <div className="flex items-center gap-2">
                 <ChefHat />
-                <span>{todaysSpecials[currentSpecial].difficulty}</span>
+                <span>{todaysSpecial.difficulty}</span>
               </div>
               <div className="flex items-center gap-2">
                 <User />
-                <span>{todaysSpecials[currentSpecial].orders}</span>
+                <span>{todaysSpecial.orders}</span>
               </div>
             </div>
           </div>
 
-          <OrderButton item={todaysSpecials[currentSpecial]} />
+          <OrderButton item={todaysSpecial} />
         </motion.div>
       </AnimatePresence>
     </motion.div>

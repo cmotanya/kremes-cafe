@@ -9,7 +9,7 @@ import { ArrowLeft, PlusCircleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddNewItemPage from "./addNewItemPage";
 import OrderConfirmationModal from "../components/order/confirmButtonPage";
-import { cn } from "../utils/cn";
+import { cn } from "@/lib/utils";
 
 const OrderPage = () => {
   const searchParams = useSearchParams();

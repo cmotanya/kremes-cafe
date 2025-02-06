@@ -7,17 +7,17 @@ import { PhoneCall, UtensilsCrossed } from "lucide-react";
 import FeatureCard from "./components/featureCard";
 import FlipText from "./components/flipText";
 import TrustedCustomers from "./components/trustedCustomers";
-import { cn } from "./utils/cn";
 import {
   playfair,
   cormorant,
   grotesque,
   customers,
   features,
-} from "./utils/lib";
+} from "../lib/lib";
 import Link from "next/link";
 import DishOfTheDay from "./components/dishOfTheDay";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const HomePage = () => {
   const fadeUpVariants = {

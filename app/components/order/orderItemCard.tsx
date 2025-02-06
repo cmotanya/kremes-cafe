@@ -1,7 +1,7 @@
 import { OrderItemCardProps } from "@/app/utils/types";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { QuantityControl } from "./qualityControl";
-import { cn } from "@/app/utils/cn";
+import { cn } from "@/lib/utils";
 
 export const OrderItemCard: React.FC<OrderItemCardProps> = ({
   orderItem,

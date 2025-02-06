@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { navigationItems } from "@/app/utils/lib";
+import { navigationItems } from "@/lib/lib";
 import { cn } from "@/lib/utils";
 
 const DesktopNavigation = () => {

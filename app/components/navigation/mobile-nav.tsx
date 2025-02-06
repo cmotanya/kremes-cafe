@@ -4,7 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarClock, Clock, MapPin, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navigationItems } from "@/app/utils/lib";
+import { navigationItems } from "@/lib/lib";
 
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);

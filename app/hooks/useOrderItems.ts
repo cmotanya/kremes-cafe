@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { todaysSpecials } from "../utils/lib";
 import { MenuItem, OrderItemProps } from "../utils/types";
 import { useRouter } from "next/navigation";
+import { todaysSpecials } from "@/lib/menuItem";
 
 export const useOrderItems = () => {
   const router = useRouter();

@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import React from "react";
-import { cn } from "../utils/cn";
 
 interface FlipTextProps {
   word: string;

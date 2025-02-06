@@ -18,7 +18,7 @@ const AddNewItemPage = ({
 }: AddNewItemProps) => {
   return (
     <Dialog open={isAddItemModalOpen} onOpenChange={handleCloseModal}>
-      <DialogContent className="max-h-[70vh] w-[90%] max-w-md rounded-md bg-white/95">
+      <DialogContent className="max-h-[70vh] w-[90%] max-w-md overflow-y-auto rounded-md bg-white/95">
         <DialogTitle className="mb-2 font-bold">
           <Badge className="ml-3 mt-4 bg-gray-300">
             {availableItems.length > 0
