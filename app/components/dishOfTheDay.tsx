@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock, ChefHat, User } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
