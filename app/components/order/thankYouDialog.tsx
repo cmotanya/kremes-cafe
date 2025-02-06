@@ -1,3 +1,4 @@
+import { useCurrency } from "@/app/hooks/useCurrency";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Check, PartyPopper } from "lucide-react";
@@ -17,6 +18,8 @@ const ThankYouDialog = ({
   clearOrderItems,
   timeoutRef,
 }: ThankYouProps) => {
+  const priceCurrency = useCurrency();
+
   const handleCancel = () => {
     setShowThankYou(false);
     clearOrderItems();
@@ -39,7 +42,7 @@ const ThankYouDialog = ({
             it right away!
           </p>
           <p className="text-lg font-medium text-primary">
-            OrderTotal: KES {totalPrice.toFixed(2)}
+            OrderTotal: {priceCurrency(totalPrice)}
           </p>
           <Button onClick={handleCancel} className="bg-red-500 text-white">
             Close

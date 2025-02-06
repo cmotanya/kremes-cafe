@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import React from "react";
 import { MenuItem } from "../utils/types";
 import { Badge } from "@/components/ui/badge";
+import { useCurrency } from "../hooks/useCurrency";
 
 interface AddNewItemProps {
   isAddItemModalOpen: boolean;
@@ -16,11 +17,13 @@ const AddNewItemPage = ({
   availableItems,
   addItem,
 }: AddNewItemProps) => {
+  const priceCurrency = useCurrency();
+
   return (
     <Dialog open={isAddItemModalOpen} onOpenChange={handleCloseModal}>
       <DialogContent className="max-h-[70vh] w-[90%] max-w-md overflow-y-auto rounded-md bg-white/95">
         <DialogTitle className="mb-2 font-bold">
-          <Badge className="ml-3 mt-4 bg-gray-300">
+          <Badge className="ml-3 mt-4 bg-red-100 text-accent">
             {availableItems.length > 0
               ? availableItems.length > 1
                 ? availableItems.length + " Items Available"
@@ -36,15 +39,15 @@ const AddNewItemPage = ({
                 onClick={() => {
                   addItem(item);
                 }}
-                className="flex cursor-pointer items-center justify-between rounded-lg border bg-gray-100 p-2 transition-colors"
+                className="group flex cursor-pointer items-center justify-between rounded-lg border bg-stone-200 p-2 transition-colors active:bg-stone-300"
               >
                 <div className="flex-grow">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-gray-800 group-hover:text-primary">
                       {item.name}
                     </h3>
-                    <span className="rounded-md bg-secondary px-1 text-sm font-medium text-white">
-                      KES {item.price.toFixed(2)}
+                    <span className="rounded-md bg-primary px-1 text-sm font-medium text-white">
+                      {priceCurrency(item.price)}
                     </span>
                   </div>
                   <p className="line-clamp-2 text-sm text-gray-600">

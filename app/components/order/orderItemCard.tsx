@@ -1,7 +1,6 @@
 import { OrderItemCardProps } from "@/app/utils/types";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { QuantityControl } from "./qualityControl";
-import { cn } from "@/lib/utils";
 
 export const OrderItemCard: React.FC<OrderItemCardProps> = ({
   orderItem,
@@ -11,9 +10,7 @@ export const OrderItemCard: React.FC<OrderItemCardProps> = ({
   showRemoveButton,
 }) => {
   return (
-    <Card
-      className={cn(orderItem.quantity > 1 ? "bg-green-100" : "bg-red-100")}
-    >
+    <Card className="bg-gray-200">
       <CardHeader className="p-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">{orderItem.item.name}</h2>

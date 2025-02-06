@@ -3,7 +3,6 @@ import { Bricolage_Grotesque as Grotesque } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import Footer from "./footer";
-// import Header from "./header";
 
 const grotesque = Grotesque({
   variable: "--font-geist-sans",
@@ -22,8 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${grotesque.className} antialiased`}>
-        {/* <Header /> */}
+      <body className={`${grotesque.className} relative antialiased`}>
         <main>
           <Suspense
             fallback={

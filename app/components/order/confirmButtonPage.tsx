@@ -14,6 +14,7 @@ import { X } from "lucide-react";
 import React, { useState, useRef } from "react";
 import ThankYouDialog from "./thankYouDialog";
 import { cn } from "@/lib/utils";
+import { useCurrency } from "@/app/hooks/useCurrency";
 
 interface OrderConfirmationModalProps {
   name: string;
@@ -37,6 +38,8 @@ const OrderConfirmationModal = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const priceCurrency = useCurrency();
 
   const handleShowThankYouModal = () => {
     setTimeout(() => {
@@ -114,8 +117,7 @@ const OrderConfirmationModal = ({
                   </div>
                   <div className="flex items-center gap-3">
                     <p className="font-semibold text-primary">
-                      KES{" "}
-                      {(orderItem.item.price * orderItem.quantity).toFixed(2)}
+                      {priceCurrency(orderItem.item.price * orderItem.quantity)}
                     </p>
                     <button
                       onClick={() => handleRemoveItem(index)}
@@ -138,7 +140,7 @@ const OrderConfirmationModal = ({
             >
               <div className="flex justify-between">
                 <p className="text-lg font-bold uppercase">Total:</p>
-                <p className="text-lg font-bold">KES {totalPrice.toFixed(2)}</p>
+                <p className="text-lg font-bold">{priceCurrency(totalPrice)}</p>
               </div>
             </div>
           </div>

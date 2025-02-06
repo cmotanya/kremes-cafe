@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Outfit } from "next/font/google";
 import DesktopNavigation from "./components/navigation/desktop-nav";
 import MobileNavigation from "./components/navigation/mobile-nav";
-import { cn } from "./utils/cn";
+import { cn } from "@/lib/utils";
 
 const outfit = Outfit({
   variable: "--font-playfair",
@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "relative flex items-center bg-gray-200 justify-between p-4 transition-all duration-300",
+        "relative flex items-center justify-between p-4 transition-all duration-300",
         outfit.className,
       )}
     >

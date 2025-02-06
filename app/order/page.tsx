@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import AddNewItemPage from "./addNewItemPage";
 import OrderConfirmationModal from "../components/order/confirmButtonPage";
 import { cn } from "@/lib/utils";
+import { useCurrency } from "../hooks/useCurrency";
 
 const OrderPage = () => {
   const searchParams = useSearchParams();
@@ -33,6 +34,8 @@ const OrderPage = () => {
     handleBack,
     clearOrderItems,
   } = useOrderItems();
+
+  const priceCurrency = useCurrency();
 
   useEffect(() => {
     if (!itemQuery) {
@@ -68,14 +71,14 @@ const OrderPage = () => {
     );
   }
   return (
-    <div className="w-full space-y-2 p-5 md:w-1/3">
+    <div className="w-full space-y-2 p-2 md:w-1/3">
       {/* Back button */}
       <Button
         onClick={handleBack}
-        className="mb-8 flex items-center justify-center bg-secondary"
+        className="mb-8 flex items-center justify-center rounded-full bg-accent text-white transition-transform active:scale-95"
       >
         <ArrowLeft className="size-4" />
-        Back To Menu
+        Back
       </Button>
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-3xl font-bold">Order Page</h1>
@@ -83,7 +86,7 @@ const OrderPage = () => {
         {orderItems.length > 0 && (
           <button
             onClick={ClearAllOrders}
-            className="rounded-lg bg-gray-200 p-2 text-sm font-semibold text-red-700"
+            className="rounded-lg bg-red-200 p-2 text-sm font-semibold text-red-700"
           >
             Clear All
           </button>
@@ -120,14 +123,14 @@ const OrderPage = () => {
       <div className="rounded-lg bg-gray-100 p-4">
         <div className="flex justify-between text-lg font-bold">
           <span>Total: </span>
-          <span>KES {calculateTotal().toFixed(2)}</span>
+          <span>{priceCurrency(calculateTotal())}</span>
         </div>
       </div>
 
       <Button
         onClick={() => setIsOrderModalOpen(true)}
         className={cn(
-          "mt-6 w-full rounded-full bg-primary py-6 uppercase text-white",
+          "mt-6 w-full rounded-full bg-primary py-6 uppercase text-white transition-transform active:scale-95",
           orderItems.length === 0 && "pointer-events-none opacity-50",
         )}
       >

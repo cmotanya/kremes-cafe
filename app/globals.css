@@ -18,6 +18,6 @@ html {
 
 @layer base {
   * {
-    @apply m-0 box-border p-0;
+    @apply m-0 box-border scroll-smooth p-0;
   }
 }
