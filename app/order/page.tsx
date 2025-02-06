@@ -8,7 +8,7 @@ import { useOrderItems } from "../hooks/useOrderItems";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddNewItemPage from "./addNewItemPage";
-import ConfirmButtonPage from "../components/order/confirmButtonPage";
+import OrderConfirmationModal from "../components/order/confirmButtonPage";
 
 const OrderPage = () => {
   const searchParams = useSearchParams();
@@ -131,7 +131,7 @@ const OrderPage = () => {
 
       {/* Modal for Confirmation */}
       {isOrderModalOpen && (
-        <ConfirmButtonPage
+        <OrderConfirmationModal
           orderItems={orderItems}
           clearOrderItems={clearOrderItems}
           totalPrice={calculateTotal()}
@@ -139,6 +139,7 @@ const OrderPage = () => {
           setIsOrderModalOpen={setIsOrderModalOpen}
           name={initialItem.name}
           price={calculateTotal()}
+          onRemoveItem={removeItem}
         />
       )}
     </div>
