@@ -5,10 +5,11 @@ import { MenuItem } from "../utils/types";
 import { OrderItemCard } from "../components/order/orderItemCard";
 import { useSearchParams } from "next/navigation";
 import { useOrderItems } from "../hooks/useOrderItems";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, PlusCircleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddNewItemPage from "./addNewItemPage";
 import OrderConfirmationModal from "../components/order/confirmButtonPage";
+import { cn } from "../utils/cn";
 
 const OrderPage = () => {
   const searchParams = useSearchParams();
@@ -102,9 +103,10 @@ const OrderPage = () => {
 
       <Button
         onClick={handleOpenModal}
-        className="mb-6 w-full rounded-lg border-2 border-dashed border-gray-300 bg-transparent p-3 py-6 text-gray-500 shadow-none"
+        className="group mb-6 w-full rounded-lg border-2 border-dashed border-gray-300 bg-transparent p-3 py-6 font-semibold uppercase text-gray-500 shadow-none"
       >
-        + Add Another Item
+        <PlusCircleIcon size={20} className="group-hover:scale-110" />
+        {orderItems.length === 0 ? "Add A New Item" : "Add Another Item"}
       </Button>
 
       {/* Modal for adding a new item */}
@@ -124,7 +126,10 @@ const OrderPage = () => {
 
       <Button
         onClick={() => setIsOrderModalOpen(true)}
-        className="mt-6 w-full rounded-full bg-primary py-6 uppercase text-white"
+        className={cn(
+          "mt-6 w-full rounded-full bg-primary py-6 uppercase text-white",
+          orderItems.length === 0 && "pointer-events-none opacity-50",
+        )}
       >
         Place Order
       </Button>
