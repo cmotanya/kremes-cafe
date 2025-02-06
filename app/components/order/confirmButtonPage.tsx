@@ -50,7 +50,7 @@ const OrderConfirmationModal = ({
     const timer = setTimeout(() => {
       setIsOrderModalOpen(false);
       setIsLoading(false);
-      // clearOrderItems();
+      clearOrderItems();
     }, 5500);
 
     timeoutRef.current = timer;
