@@ -19,7 +19,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import DishOfTheDay from "./components/dishOfTheDay";
-import Header from "./header";
+// import Header from "./header";
 
 const HomePage = () => {
   const fadeUpVariants = {
@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <section id="#home" className="relative h-dvh w-full p-5">
         {/* Main Content - Centered */}
         <div className="relative z-20 h-full items-center justify-center md:mt-0 md:flex">
